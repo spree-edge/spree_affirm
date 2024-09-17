@@ -102,9 +102,9 @@
         <% @order.line_items.each do |item| %>
         {
           <% if item.variant.images.any? %>
-            item_image_url: "<%= URI.join(root_url, item.variant.images.first.attachment.url(:large)) %>",
+            item_image_url: "<%= URI.join(root_url, main_app.cdn_image_url(item.variant.images.first.attachment.variant(resize_to_limit: [244, 104]))) %>",
           <% elsif item.variant.product.images.any? %>
-            item_image_url: "<%= URI.join(root_url, item.variant.product.images.first.attachment.url(:large)) %>",
+            item_image_url: "<%= URI.join(root_url, main_app.cdn_image_url(item.variant.product.images.first.attachment.variant(resize_to_limit: [244, 104]))) %>",
           <% end %>
 
           qty:           <%= item.quantity %>,
